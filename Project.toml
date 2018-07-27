@@ -1,5 +1,5 @@
 authors = ["David Ellison <davidehellison@gmail.com>"]
-name = "CL.jl"
+name = "CL"
 uuid = "f25cb794-9083-11e8-0aef-7ba1ed0dc970"
 version = "0.1.0"
 
