@@ -7,10 +7,11 @@ mutable struct Index{T}
     x2int::Dict{T,Int}
     int2x::Vector{T}
 end
-Index() = Index{Any}()
+Index(args...) = Index{Any}(args...)
 Index{T}() where T = Index(1, Dict{T,Int}(), T[])
-function Index(xs)
-    index = Index{eltype(xs)}()
+Index(xs) = Index{eltype(xs)}(xs)
+function Index{T}(xs) where T
+    index = Index{T}()
     for x in xs
         get!(index.x2int, x) do
             index.i += 1

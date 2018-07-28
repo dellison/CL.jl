@@ -9,8 +9,9 @@ function Counter{T}() where T
     Counter{T}(Dict{T,Int}(), 0)
 end
 
-function Counter(xs::AbstractArray)
-    T = eltype(xs)
+Counter(xs::AbstractArray) = Counter{eltype(xs)}(xs)
+
+function Counter{T}(xs::AbstractArray) where T
     counts = Dict{T,Int}()
     total = 0
     for x in xs
@@ -96,3 +97,5 @@ function ==(c1::Counter, c2::Counter)
     end
     return true
 end
+
+Base.sort(c::Counter; kwargs...) = sort(collect(c); kwargs...)
