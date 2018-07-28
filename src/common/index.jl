@@ -1,7 +1,3 @@
-module Indexing
-
-export Index, id, ids, id!, ids!
-
 """Index{T}
 
 Bijective mapping between things (of type T) and integers.
@@ -63,4 +59,6 @@ function id!(idx::Index{T}, x::T) where T
 end
 id!(idx::Index, x) = id!(idx, convert(typeof(idx), x))
 
-end # module
+ids!(index::Index, xs) = [id!(index, x) for x in xs]
+
+Base.length(index::Index) = length(index.int2x)

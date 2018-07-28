@@ -1,7 +1,5 @@
 module CL
 
-greet() = print("Hello World!")
-
-include("Indexing.jl")
+include("common/Common.jl")
 
 end # module
