@@ -12,11 +12,13 @@ struct RegexTokenizer <: Tokenizer
     end
 end
 
+(t::RegexTokenizer)(text) = tokenize(t, text)
+
 function tokenize(t::RegexTokenizer, str)
     if t.gaps
         ts = [t.normalize(tk) for tk in split(str, t.rx)]
-        t.discard_empty ? filter(isempty, ts) : ts
+        t.discard_empty ? filter(!isempty, ts) : ts
     else
-        [t.normalize(tk) for tk in matchall(t.rx, str)]
+        [t.normalize(m.match) for m in eachmatch(t.rx, str)]
     end
 end
