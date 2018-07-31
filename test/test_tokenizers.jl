@@ -12,4 +12,10 @@ using CL.Common: RegexTokenizer
     sentences = readf(wsjdep)
     @test length(sentences) == 2
     @test map(length, sentences) == [18, 13]
+
+    s = " a b"
+    tok1 = RegexTokenizer(r"\s+", gaps=true)
+    @test tok1(s) == ["a", "b"]
+    tok2 = RegexTokenizer(r"\s+", gaps=true, discard_empty=false)
+    @test tok2(s) == ["", "a", "b"]
 end

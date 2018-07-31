@@ -1,5 +1,6 @@
 abstract type Tokenizer end
 
+# based on nltk's regexptokenizer
 struct RegexTokenizer <: Tokenizer
     rx::Regex
     gaps::Bool
@@ -15,7 +16,7 @@ end
 (t::RegexTokenizer)(text) = tokenize(t, text)
 
 function tokenize(t::RegexTokenizer, str)
-    if t.gaps
+    if t.gaps # rx matches the gap, not the token, so split
         ts = [t.normalize(tk) for tk in split(str, t.rx)]
         t.discard_empty ? filter(!isempty, ts) : ts
     else
