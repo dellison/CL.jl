@@ -1,5 +1,4 @@
-using CL.Common
-
+using CL.Common: Index, id, id!, ids!
 @testset "Indexing" begin
     index = Index()
     @test length(index) == 0
@@ -17,6 +16,7 @@ using CL.Common
     @test length(index) == 6
 end
 
+using CL.Common: Counter, inc!, total
 @testset "Counters" begin
     c = Counter()
     @test length(c) == total(c) == 0
