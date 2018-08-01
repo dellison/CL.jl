@@ -1,3 +1,4 @@
+
 abstract type Tokenizer end
 
 # based on nltk's regexptokenizer
@@ -22,4 +23,11 @@ function tokenize(t::RegexTokenizer, str)
     else
         [t.normalize(m.match) for m in eachmatch(t.rx, str)]
     end
+end
+
+
+
+function wordtag(token, sep="/")
+    xs = split(token, sep)
+    return String(join(xs[1:end-1], sep)), String(xs[end])
 end

@@ -1,4 +1,5 @@
 using CL.Common: RegexTokenizer
+using CL.Common: wordtag
 
 @testset "Tokenizers" begin
     tokenize = RegexTokenizer(r"\w+")
@@ -18,4 +19,9 @@ using CL.Common: RegexTokenizer
     @test tok1(s) == ["a", "b"]
     tok2 = RegexTokenizer(r"\s+", gaps=true, discard_empty=false)
     @test tok2(s) == ["", "a", "b"]
+
+
+    @test wordtag("the/DT") == ("the", "DT")
+    @test wordtag("Chiat/Day/Mojo/NNP") == ("Chiat/Day/Mojo", "NNP")
+    @test wordtag("either/or/CONJ") == ("either/or", "CONJ")
 end
